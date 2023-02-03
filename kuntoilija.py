@@ -24,7 +24,6 @@ class Kuntoilija:
         self.sukupuoli=sukupuoli
         self.bmi=fitness.laske_bmi(self.paino,self.pituus)
    
-
     #Metodi rasvaprosentin laskemiseen(yleinen/aikuinen)
     def rasvaprosentti(self):
         self.rasvaprosentti=fitness.aikuisen_rasvaprosentti(self.bmi,self.ika,self.sukupuoli)
@@ -52,9 +51,10 @@ if __name__ == "__main__":
     print(kuntoilija.nimi,"painaa",kuntoilija.paino,"kg")
 #    print("Painoindeksi on",kuntoilija.painoindeksi())
     print("Rasvaprosentti on",kuntoilija.rasvaprosentti())
-    
+
 
     junioriKuntoilija=JunioriKuntoilija("Aku",171,65,16,1)
     print(junioriKuntoilija.nimi,"painaa",junioriKuntoilija.paino,"kg")
 #    print("Painoindeksi on",kuntoilija.painoindeksi())
     print("Rasvaprosentti on",junioriKuntoilija.rasvaprosentti())
+    
