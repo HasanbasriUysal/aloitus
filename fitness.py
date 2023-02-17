@@ -1,6 +1,8 @@
 # SOVELLUS PAINOINDEKSIN JA KEHON RASVAPROSENTIN LASKEMISEEN
 # ==========================================================
 
+#Kirjastot ja moduulit
+import math
 # Määritellään funktio painoindeksin laskentaan
 def laske_bmi(paino, pituus):
     """Laskee painoindeksin (BMI)
@@ -50,6 +52,26 @@ def lapsen_rasvaprosentti(bmi, ika, sukupuoli):
     rasvaprosentti = round(rasvaprosentti,1)
     return rasvaprosentti
 
+def usarasvaprosentti_mies(pituus,vyotaron_ymparys,kaulan_ymparys):
+    """Laskee miehen rasvaprosentin USA:n armeijan kaavalla
+
+    Args:
+        pituus (float): pittus(cm)
+        vatsan_ymparys (float): vatsan_ymparysmitta (cm)
+        kaulan_ymparys (float): kaulan_ymparysmitta (cm)
+        
+    Returns:
+        float: rasvaprosentti 
+    """
+    #Muutetaan mitat tuumiksi
+    tuuma_pituus = pituus/2.5
+    tuuma_vyotaron_ymparys = vyotaron_ymparys/2.5
+    tuuma_kaulan_ymparys = kaulan_ymparys/2.5
+    #Lasketaan rasvaprosentti
+
+    usarprosentti=86.10*math.log10(tuuma_vyotaron_ymparys-tuuma_kaulan_ymparys)-70.041*math.log10(tuuma_pituus)+36.76
+    return usarprosentti
+
 
 # Suoritetaan seuraavat rivit vain, jos tämä tiedosto on pääohjelma
 # Mahdollistaa funktioiden lataamisen toisiin ohjelmiin
@@ -62,12 +84,16 @@ if __name__ == "__main__":
     paino_teksti = input('Kuinka paljon painat (kg): ')
     ika_teksti = input('Kuinka vanha olet: ')
     sukupuoli_teksti = input('Sukupuoli mies, vastaa 1, nainen vastaa 0: ')
+    vyotaron_ymparys_teksti = input("Mikä on vyötärön ympärykseksi(cm):")
+    kaulan_ymparys_teksti = input("Mikä on kaulasi ympärykseksi(cm):")
 
     # Muutetaan vastaukset liukuluvuiksi
     pituus = float(pituus_teksti)
     paino = float(paino_teksti)
     ika = float(ika_teksti)
     sukupuoli = float(sukupuoli_teksti)
+    vyotaron_ymparys = float(vyotaron_ymparys_teksti)
+    kaulan_ymparys = float(kaulan_ymparys_teksti)
 
     # Lasketaan painoindeksi funktiolla laske_bmi
     oma_bmi = laske_bmi(paino, pituus)
@@ -82,3 +108,9 @@ if __name__ == "__main__":
 
     print('Painoindeksisi on', oma_bmi,
           'ja kehon rasvaprosentti on', oma_rasvaprosentti)
+
+
+    usa_rasvaprosentti = usarasvaprosentti_mies(pituus,vyotaron_ymparys,kaulan_ymparys)
+    print("USA:n armeijan kaavalla rasvaprosenttisi on", usa_rasvaprosentti)
+
+
