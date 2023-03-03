@@ -121,6 +121,7 @@ if __name__ == "__main__":
     vyotaron_ymparys = float(vyotaron_ymparys_teksti)
     kaulan_ymparys = float(kaulan_ymparys_teksti)
     lantion_ymparys = float(lantion_ymparys_teksti)
+    
 
     # Lasketaan painoindeksi funktiolla laske_bmi
     oma_bmi = laske_bmi(paino, pituus)
@@ -136,12 +137,15 @@ if __name__ == "__main__":
     print('Painoindeksisi on', oma_bmi,
           'ja kehon rasvaprosentti on', oma_rasvaprosentti)
 
+
+
     #Jos mies laske miehen kaavalla, muussa tapauksessa naisen kavalla
     if sukupuoli_teksti == "1":
         usa_rasvaprosentti = usarasvaprosentti_mies(pituus,vyotaron_ymparys,kaulan_ymparys)
-        print("USA:n mies armeijan kaavalla rasvaprosenttisi on", usa_rasvaprosentti)
+        
     else:
         usa_rasvaprosentti = usarasvaprosentti_nainen(pituus,vyotaron_ymparys,lantion_ymparys,kaulan_ymparys)
-        print("USA:n nainen armeijan kaavalla rasvaprosenttisi on", usa_rasvaprosentti)
+    
+    print("USA:n nainen armeijan kaavalla rasvaprosenttisi on", usa_rasvaprosentti)
 
 
